@@ -1,6 +1,8 @@
 import express from "express"
 import cookieParser from "cookie-parser";
-require("dotenv").config();
+import userRouter from "./routes/userRoute.mjs"
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 const PORT = 5000;
@@ -11,5 +13,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // cookie middleware
 app.use(cookieParser());
+
+
+// routes
+
+app.use("/api", userRouter)
+
+
 
 app.listen(PORT, () => console.log(`server is running on PORT: ${PORT}`));
